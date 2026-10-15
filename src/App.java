@@ -4,8 +4,12 @@ public class App {
         System.out.println("Arreglo Original");
       Bubble buuble = new Bubble();
 
-      buuble.sort(numeros);
-      System.out.println("Arreglo Ordenado");l
+
+    }
+    public static void printArreglo(int[] arr){
+        for(int i = 0; i<arr.length; i++){
+            System.out.print(arr[i] + " - ");
+        }
 
     }
 }
