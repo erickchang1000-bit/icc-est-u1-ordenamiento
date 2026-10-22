@@ -3,4 +3,4 @@ Metodo Insertion
 ![alt text](Insertion1.png)
 ------
 Salida
-![alt text](Insertion2.png)
+![alt text](Insertion2.png)gi
