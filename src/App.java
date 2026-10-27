@@ -1,12 +1,15 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 import models.Estudiante;
 
 public class App {
     public static void main(String[] args) {
-        runEjemplosObjetos();
-        runComparators();
+        //runEjemplosObjetos();
+        //runComparators();
+        runComparatorsObj();
         
     }
 
@@ -77,5 +80,17 @@ public class App {
             System.out.print(arreglo[i] + " - ");
         }
         System.out.println();
+    }
+    private static void runComparatorsObj() {
+        List <Integer> numeros = new ArrayList<>(List.of(5,6,4,1,2,3));
+        // Orden de menor a mayor 
+        numeros.sort(Comparator.naturalOrder());
+        numeros.sort(null);
+        System.out.println(numeros);
+        // Ordenar de mayor a menor 
+        numeros.sort(Comparator.reverseOrder());
+        System.out.println(numeros);
+
+        
     }
 }
