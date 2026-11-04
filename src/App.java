@@ -2,16 +2,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+
 import models.Estudiante;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        runEjemplosPrimitivos();
+        //runEjemplosPrimitivos();
         //runEjemplosObjetos();
         //runComparators();
         //runComparatorsObj();
         //runComparatorsObj2();
         //new Comparators();
+        Comparable comparable = new Comparable();
+        
     }
 
     private static void runComparatorsObj2() {
