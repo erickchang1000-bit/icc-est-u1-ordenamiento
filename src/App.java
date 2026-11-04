@@ -2,50 +2,84 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
 import models.Estudiante;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        runEjemplosPrimitivos();
         //runEjemplosObjetos();
         //runComparators();
-        runComparatorsObj();
-        
+        //runComparatorsObj();
+        //runComparatorsObj2();
+        //new Comparators();
+    }
+
+    private static void runComparatorsObj2() {
+        Estudiante e1 = new Estudiante("Juan", 10);
+
+        Estudiante[] estudiantes = {e1,
+                new Estudiante("Maria", 7),
+                new Estudiante("Diego", 3.5),
+                new Estudiante("Pedro", 6.8),
+        };
+
+        Comparator<Estudiante> compNota = Comparator.comparingDouble(e -> e.getNota());
+        Arrays.sort(estudiantes, compNota);
+        for (int i = 0; i < estudiantes.length; i++) {
+            System.out.print(estudiantes[i] + " - ");
+        }
+        System.out.println();
+
+        List<Estudiante> estudiantesLista = new ArrayList<>(List.of(e1,
+                new Estudiante("Maria", 7),
+                new Estudiante("Diego", 3.5),
+                new Estudiante("Pedro", 6.8)));
+
+        estudiantesLista.sort(compNota);
+        for (int i = 0; i < estudiantesLista.size(); i++) {
+            System.out.println(estudiantesLista.get(i) + " - ");
+        }
+        System.out.println();
+    }
+
+    private static void runComparatorsObj() {
+        List<Integer> numeros = new ArrayList<>(List.of(5, 6, 4, 1, 2, 3));
+
+        //Orden de menor a mayor
+        numeros.sort(Comparator.naturalOrder());
+        numeros.sort(null);
+        System.out.println(numeros);
+
+        //Orden de mayor a menor
+        numeros.sort(Comparator.reverseOrder());
+        System.out.println(numeros);
     }
 
     private static void runComparators() {
         Integer[] original = {5, 6, 4, 1, 2, 3};
         Arrays.sort(original);
-        for (int i = 0; i < original.length; i++) {
-            System.out.print(original[i]);
-        }
-        System.out.println("---------");
+        for (int i = 0; i < original.length; i++)
+            System.out.println(original[i] + " - ");
+
+        System.out.println("------------------------");
         Arrays.sort(original, Comparator.reverseOrder());
-        for (int i = 0; i < original.length; i++) {
-            System.out.print(original[i]);
-        }
+        for (int i = 0; i < original.length; i++)
+            System.out.println(original[i] + " - ");
     }
 
     private static void runEjemplosObjetos() {
-
-        Estudiante e1 = new Estudiante("Juan", 19);
+        Estudiante e1 = new Estudiante("Juan", 10);
 
         Estudiante[] estudiantes = {e1,
-            new Estudiante("Maria", 7),
-            new Estudiante("Diego", 3.5),
-            new Estudiante("Pedro", 8.6),
-
+                new Estudiante("Maria", 7),
+                new Estudiante("Diego", 3.5),
+                new Estudiante("Pedro", 6.8),
         };
-        Bubble b = new Bubble();
-        b.sortEstudiantes(estudiantes);
-        printArregloEstudiantes(estudiantes);
-    }
 
-    private static void printArregloEstudiantes(Estudiante[] estudiantes) {
-
-        for (int i = 0; i < estudiantes.length; i++) {
-            System.out.println(estudiantes[i]);
-        }
+        Bubble bubble = new Bubble();
+        printArregloEstudiantes(estudiantes, "Original");
+        bubble.sortEstudiantesNOTA(estudiantes);
+        printArregloEstudiantes(estudiantes, "Ordenado");
     }
 
     public static void runEjemplosPrimitivos() {
@@ -54,43 +88,43 @@ public class App {
         int[] c = original.clone();
         int[] d = original.clone();
 
+        // Bubble
         Bubble bubble = new Bubble();
+        printArreglo(b);
+        bubble.sort(b);
+        printArreglo(b);
 
-        printArreglo(b);
-        bubble.bubbleSort(b);
-        printArreglo(b);
-        
-        System.out.println("\n");
-        System.out.println("---Selection---");
+        // Selection
+        System.out.println("Selection");
         Selection selection = new Selection();
         printArreglo(c);
         selection.sort(c);
         printArreglo(c);
 
-        System.out.println("\n");
-        System.out.println("---Insertion---");
-        //Insertion insertion = new Insertion();
-        printArreglo(d);
-        //insertion.sort(d);
-        printArreglo(d);
+        // Insertion
+        System.out.println("---Selection insertion---");
+        Insertion insertion = new Insertion();
+        printArreglo(d, "Original");
+        insertion.sort(d);
+        printArreglo(d, "Ordenado");
     }
 
-    public static void printArreglo(int[] arreglo) {
-        for (int i = 0; i < arreglo.length; i++) {
-            System.out.print(arreglo[i] + " - ");
-        }
+    public static void printArreglo(int[] arr) {
+        for (int i = 0; i < arr.length; i++)
+            System.out.print(arr[i] + " - ");
         System.out.println();
     }
-    private static void runComparatorsObj() {
-        List <Integer> numeros = new ArrayList<>(List.of(5,6,4,1,2,3));
-        // Orden de menor a mayor 
-        numeros.sort(Comparator.naturalOrder());
-        numeros.sort(null);
-        System.out.println(numeros);
-        // Ordenar de mayor a menor 
-        numeros.sort(Comparator.reverseOrder());
-        System.out.println(numeros);
 
-        
+    public static void printArreglo(int[] arr, String title) {
+        System.out.println(title);
+        printArreglo(arr);
+    }
+
+    public static void printArregloEstudiantes(Estudiante[] arr, String title) {
+        System.out.println(title);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " - ");
+        }
+        System.out.println();
     }
 }
